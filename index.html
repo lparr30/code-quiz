@@ -9,8 +9,13 @@
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 <body>
-    <h1 class="time"></h1>
-    <div class=question-contents>
+    <div class="welcome-page" state="visible">
+        <h1>Welcome to the quiz!</h1>
+        <p>Answer the following questions within the time limit. Incorrect answers will decuct from your time by 10 seconds, decreasing your final score by 10 points!</p>
+        <button id="start">Start Quiz</button>
+    </div>
+    <h2 class="time"></h2>
+    <div class=question-contents state="hidden">
         <h3>Question 1</h3>
        <button id="choice1">Choice 1</button>
        <button id="choice2">Choice 2</button>
