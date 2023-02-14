@@ -6,6 +6,7 @@ var answersEl = document.querySelector('#answer-choices');
 var userInputEl = document.querySelector('#userInput');
 var currentQuestion = 0
 var welcomePageEl = document.querySelector('.welcome-page');
+var userInitials;
 
 var questions = [
     {
@@ -116,15 +117,20 @@ function stopGame(){
     console.dir(window.prompt)
 }
 
-
+saveInitials();
 
 // save highscores 
 function saveInitials() {
-    var userInitials = localStorage.getItem('userInitials');
+    userInitials = localStorage.getItem('userInitials');
+}
+
+if(userInitials === ''){
+    displayMessage('Error','Please enter valid initials');
+} else{
+    localStorage.setItem('userInitials', userInputEl);
     userInputEl.textContent = userInitials
 }
-localStorage.setItem('userInitials', userInputEl);
-saveInitials();
+
 
 
 // display final scores
