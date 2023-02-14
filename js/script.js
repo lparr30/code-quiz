@@ -4,9 +4,11 @@ var clickButton = true;
 var questionEl = document.querySelector('#question');
 var answersEl = document.querySelector('#answer-choices');
 var userInputEl = document.querySelector('#userInput');
+var gameOverMessageEl = document.querySelector('#game-over-message');
 var currentQuestion = 0
 var welcomePageEl = document.querySelector('.welcome-page');
 var userInitials;
+var score = 0;
 
 var questions = [
     {
@@ -59,9 +61,10 @@ function setTime() {
         secondsLeft--;
         timeEl.textContent = secondsLeft + ' seconds left';
         // game over when all questions answered OR time === 0
-        if(secondsLeft === 0 || currentQuestion >= questions.length) {
+        if(secondsLeft === 0) {
             clearInterval(timer);
-            timeEl.setAttribute('style',"visibility: hidden");
+            // timeEl.setAttribute('style',"visibility: hidden");
+            stopGame();
             // messageEl.textContent = "Time is up! Game over!";
         }
     }, 1000);
@@ -89,18 +92,20 @@ function checkAnswer(event){
     // console.log(event.target.textContent);
     if(event.target.textContent === questions[currentQuestion].correct){
         console.log('yes! Its true');
+        score++;
     } else{
         console.log('got it wrong');
         // var remainingTime = moment().subtract(10,'seconds');
         // secondsLeft = remainingTime;
         // remainingTime = secondsLeft - 10;
         // timeEl.textContent = secondsLeft - 10;
+        secondsLeft -= 10; // secondsLeft = secondsLeft - 10
     }
     currentQuestion++
     if(currentQuestion >= questions.length){
         // messageEl.textContent = "Time is up! Game over!";
-        questionEl.setAttribute('style',"visibility: hidden");
-        window.alert('Time is up! Game over.')
+        // questionEl.setAttribute('style',"visibility: hidden");
+        // window.alert('Time is up! Game over.');
         stopGame();
         // use highscores var
     } else{
@@ -112,24 +117,60 @@ function checkAnswer(event){
 function stopGame(){
     questionEl.setAttribute('style',"visibility: hidden");
     answersEl.setAttribute('style',"visibility: hidden");
+    timeEl.setAttribute('style',"visibility: hidden");
+    if (secondsLeft > 0) {
+
+        gameOverMessageEl.textContent = 'Quiz Complete!'
+    } else {
+        gameOverMessageEl.textContent = 'Game Over, you ran out of time!'
+    }
+    
+    // place a text input on the page for the user's initials
+    var initialsInput = document.createElement('input');
+    initialsInput.setAttribute('type', 'text');
+    initialsInput.setAttribute('placeholder', 'Enter your initials, champion');
+    initialsInput.setAttribute('id', 'initials-input')
+    userInputEl.appendChild(initialsInput);
+
+    var submitButton = document.createElement('button');
+    submitButton.textContent = 'Submit';
+    userInputEl.appendChild(submitButton);
+
+    submitButton.addEventListener('click', function () {
+        var inputInitials = document.querySelector('#initials-input');
+        saveInitials(inputInitials.value)
+    })
+
+    
     // enter initials w SUBMIT button
-    window.prompt('Enter your initials to save your highscore.')
-    console.dir(window.prompt)
+    // var initials = window.prompt('Enter your initials to save your highscore.')
+    // saveInitials(initials);
 }
 
-saveInitials();
+
 
 // save highscores 
-function saveInitials() {
-    userInitials = localStorage.getItem('userInitials');
+function saveInitials(initials) {
+    if(initials === ''){
+        displayMessage('Error','Please enter valid initials');
+    } else{
+        // save initials by adding an object { initials: 'LP', highScore: 4 } to an array of such objects
+        // first, get the current array of highscores and handle if there isn't one yet
+        var highScores = localStorage.getItem('highScores');
+        if (!highScores) {
+            highScores = [];
+        }
+        highScores.push({ 
+            initials: initials, 
+            score: score 
+        });
+        localStorage.setItem('highScores', JSON.stringify(highScores));
+        // userInputEl.textContent = userInitials
+    }
+    // var highScores = JSON.parse(localStorage.getItem('highScores'));
 }
 
-if(userInitials === ''){
-    displayMessage('Error','Please enter valid initials');
-} else{
-    localStorage.setItem('userInitials', userInputEl);
-    userInputEl.textContent = userInitials
-}
+
 
 
 
