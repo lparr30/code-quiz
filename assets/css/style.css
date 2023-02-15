@@ -1,8 +1,10 @@
-/* .time {
-    position: absolute;
-    left: 700px;
-} */
+/* universal selector not working */
 
+header {
+    font-family:Georgia, 'Times New Roman', Times, serif
+}
 h1 {
-    font-size: 3em;
+    font-size: 40px;
+    display: flex;
+    justify-content: center;
 }

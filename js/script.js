@@ -159,9 +159,9 @@ function saveInitials(initials) {
         var highScores = localStorage.getItem('highScores');
         if (!highScores) {
             highScores = [];
+        } else {
+            highScores = JSON.parse(highScores);
         }
-        console.log(typeof highScores);
-        highScores = JSON.parse(localStorage.getItem('highScores'));
         highScores.push({
             initials: initials, 
             score: secondsLeft
@@ -170,12 +170,11 @@ function saveInitials(initials) {
         // userInputEl.textContent = userInitials
     }
     // display final scores
+    var displayedInitials = document.querySelector('#highscores');
     function displayHighscore(){
-        highScores.textContent = highScores
+        displayedInitials.textContent = localStorage.setItem('highScores', JSON.stringify(highScores));
     }
      displayHighscore();
-    // console.log(highScores);
-    // var highScores = JSON.parse(localStorage.getItem('highScores'));
 }
 
 
