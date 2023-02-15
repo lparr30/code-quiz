@@ -8,7 +8,7 @@ var gameOverMessageEl = document.querySelector('#game-over-message');
 var currentQuestion = 0
 var welcomePageEl = document.querySelector('.welcome-page');
 var userInitials;
-var score = 0;
+// var score = 0;
 
 var questions = [
     {
@@ -92,7 +92,7 @@ function checkAnswer(event){
     // console.log(event.target.textContent);
     if(event.target.textContent === questions[currentQuestion].correct){
         console.log('yes! Its true');
-        score++;
+        // score++;
     } else{
         console.log('got it wrong');
         // var remainingTime = moment().subtract(10,'seconds');
@@ -122,7 +122,7 @@ function stopGame(){
 
         gameOverMessageEl.textContent = 'Quiz Complete!'
     } else {
-        gameOverMessageEl.textContent = 'Game Over, you ran out of time!'
+        gameOverMessageEl.textContent = 'Game over, you ran out of time!'
     }
     
     // place a text input on the page for the user's initials
@@ -160,13 +160,21 @@ function saveInitials(initials) {
         if (!highScores) {
             highScores = [];
         }
-        highScores.push({ 
+        console.log(typeof highScores);
+        highScores = JSON.parse(localStorage.getItem('highScores'));
+        highScores.push({
             initials: initials, 
-            score: score 
+            score: secondsLeft
         });
         localStorage.setItem('highScores', JSON.stringify(highScores));
         // userInputEl.textContent = userInitials
     }
+    // display final scores
+    function displayHighscore(){
+        highScores.textContent = highScores
+    }
+     displayHighscore();
+    // console.log(highScores);
     // var highScores = JSON.parse(localStorage.getItem('highScores'));
 }
 
