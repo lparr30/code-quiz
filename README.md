@@ -14,4 +14,5 @@ I learned much about the syntax of JavaScript, more about how functions work, de
 
 To use this application, click the "Start" button upon the webpage loading. Then, answer each question by selecting the appropriate answer choice. When you finish the quiz, or run out of time, enter your initials for your highscore to be saved!
 
-![Code-Quiz-Welcome-Page](assets/images/screenshot.png)
+![Code-Quiz-Welcome-Page](./assets/images/code-quiz-welcome.png)
+![Code-Quiz-Question](./assets/images/code-quiz-question.png)
