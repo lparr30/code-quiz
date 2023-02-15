@@ -7,8 +7,7 @@ var userInputEl = document.querySelector('#userInput');
 var gameOverMessageEl = document.querySelector('#game-over-message');
 var currentQuestion = 0
 var welcomePageEl = document.querySelector('.welcome-page');
-var userInitials;
-// var score = 0;
+var questionContentsEl = document.querySelector('.question-contents')
 
 var questions = [
     {
@@ -36,6 +35,7 @@ var questions = [
 //FUNCTIONS
 // click button to start quiz
 function startQuiz() {
+    questionContentsEl.setAttribute('style',"background: white");
     startEl.addEventListener('click', function(){
         // console.log('test');
         // console.dir(clickButton);
@@ -76,6 +76,7 @@ function setTime() {
 
 // initiate first question upon timer starting
 function nextQuestion() {
+    questionContentsEl.setAttribute('style',"background: rgb(9, 18, 77)");
     questionEl.textContent = questions[currentQuestion].Question
     // for(var i=0; i<questions.length; i++){
     //     questionEl.textContent = questions[i]
@@ -117,6 +118,7 @@ function checkAnswer(event){
 }
 
 function stopGame(){
+    questionContentsEl.setAttribute('style',"background: white");
     questionEl.setAttribute('style',"visibility: hidden");
     answersEl.setAttribute('style',"visibility: hidden");
     timeEl.setAttribute('style',"visibility: hidden");
