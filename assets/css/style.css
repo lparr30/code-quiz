@@ -1,10 +1,53 @@
 /* universal selector not working */
 
-header {
+body {
     font-family:Georgia, 'Times New Roman', Times, serif
 }
+
 h1 {
     font-size: 40px;
     display: flex;
     justify-content: center;
+    margin: 10px 0 10px 0;
+}
+
+p {
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    margin: 10px 10px 10px 10px;
+}
+
+#start {
+    height: 50px;
+    width: 100px;
+    margin: 20px;
+}
+
+h2 {
+    display: flex;
+    justify-content: center;
+    margin: -100px 0px 10px 0px;
+    font-size: 35px;
+}
+
+.question-contents {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    /* justify-content: center; */
+    margin: 20px;
+    font-size: 24px;
+}
+
+#game-over-message {
+    display: flex;
+    justify-content: center;
+    font-size: 24px;
+}
+
+#userInput {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
 }

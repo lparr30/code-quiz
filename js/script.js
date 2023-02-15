@@ -60,8 +60,10 @@ function setTime() {
     timer = setInterval(function() {
         secondsLeft--;
         timeEl.textContent = secondsLeft + ' seconds left';
+        // secondsLeft.setAttribute('style',"font-size: 200px");
+    
         // game over when all questions answered OR time === 0
-        if(secondsLeft === 0) {
+        if(secondsLeft === 0 || currentQuestion >= questions.length) {
             clearInterval(timer);
             // timeEl.setAttribute('style',"visibility: hidden");
             stopGame();
